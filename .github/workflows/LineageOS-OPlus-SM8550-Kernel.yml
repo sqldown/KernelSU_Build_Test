@@ -47,7 +47,7 @@ jobs:
     - name: Download kernel source
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
-        git clone --recursive https://github.com/LineageOS/android_kernel_oneplus_sm8550 -b lineage-22.0 android-kernel --depth=1
+        git clone --recursive https://github.com/sqldown/android_kernel_oneplus_sm8550 -b master android-kernel --depth=1
         cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel/scripts
         sed -i 's/ -XposedHook//g' setlocalversion
         cd $GITHUB_WORKSPACE/kernel_workspace
@@ -100,12 +100,12 @@ jobs:
       if: env.CHECK_IMAGE == 'true'
       uses: actions/upload-artifact@v4
       with:
-        name: Image-Official-KSU_${{ env.KSUVER }}
+        name: Image-Official-KSU
         path: kernel_workspace/android-kernel/out/arch/arm64/boot/Image
 
     - name: Upload AnyKernel3
       if: env.CHECK_IMAGE == 'true'
       uses: actions/upload-artifact@v4
       with:
-        name: AK3-LineageOS-22.0-XposedHook-Official-sukisu_${{ env.KSUVER }}-${{ env.BUILD_TIME }}
+        name: AK3-LineageOS-22.2-XposedHook-Official-sukisu-${{ env.BUILD_TIME }}
         path: kernel_workspace/AnyKernel3/*
